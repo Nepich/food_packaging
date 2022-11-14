@@ -1,3 +1,5 @@
+import logging
+
 from django.core.mail import send_mail
 
 # Create your views here.
@@ -8,6 +10,8 @@ from rest_framework.generics import CreateAPIView
 from .models import LandingModel, ManagersModel, FormBlockAdminModel
 from .serializers import LandingModelAdminSerializer, FormBlockSerializer
 
+logger = logging.getLogger('main')
+
 
 class LandingPageFormView(CreateAPIView):
     """View to send a form"""
@@ -15,24 +19,32 @@ class LandingPageFormView(CreateAPIView):
     queryset = FormBlockAdminModel.objects.all()
 
     def perform_create(self, serializer):
-        mail_to = ManagersModel.objects.all().values()
-        queryset = self.get_queryset().values()[0]
-        for recipient in mail_to:
-            send_mail('Новая заявка',
-                      f'У вас новая заявка от пользователя - {queryset["form_customer_name"]}\n'
-                      f'Номер телефона - {queryset["form_customer_phone"]}\n'
-                      f'Сообщение: {queryset["form_customer_message"]}',
-                      'nepich@gmail.com',
-                      [recipient['managers_email']],
-                      fail_silently=False)
+        try:
+            mail_to = ManagersModel.objects.all().values()
+            queryset = self.get_queryset().values()[0]
+            for recipient in mail_to:
+                send_mail('Новая заявка',
+                          f'У вас новая заявка от пользователя - {queryset["form_customer_name"]}\n'
+                          f'Номер телефона - {queryset["form_customer_phone"]}\n'
+                          f'Сообщение: {queryset["form_customer_message"]}',
+                          'nepich@gmail.com',
+                          [recipient['managers_email']],
+                          fail_silently=False)
+        except Exception as e:
+            logger.warning(e)
 
 
 class LandingPageView(APIView):
     """View to get landing context"""
+
     def get(self, request, *args, **kwargs):
-        queryset = LandingModel.objects.latest('id')
-        serializer = LandingModelAdminSerializer(queryset)
-        return Response(serializer.data)
+        try:
+            queryset = LandingModel.objects.latest('id')
+            serializer = LandingModelAdminSerializer(queryset)
+            return Response(serializer.data)
+        except Exception as e:
+            logger.warning(e)
+
 
 
 
