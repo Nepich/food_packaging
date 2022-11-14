@@ -9,6 +9,7 @@ from rest_framework.generics import CreateAPIView
 
 from .models import LandingModel, ManagersModel, FormBlockAdminModel
 from .serializers import LandingModelAdminSerializer, FormBlockSerializer
+from .tasks import send_email
 
 logger = logging.getLogger('main')
 
@@ -21,15 +22,14 @@ class LandingPageFormView(CreateAPIView):
     def perform_create(self, serializer):
         try:
             mail_to = ManagersModel.objects.all().values()
-            queryset = self.get_queryset().values()[0]
+            data = self.request.data
+            name = data["form_customer_name"]
+            phone = data["form_customer_phone"]
+            message = data["form_customer_phone"]
             for recipient in mail_to:
-                send_mail('Новая заявка',
-                          f'У вас новая заявка от пользователя - {queryset["form_customer_name"]}\n'
-                          f'Номер телефона - {queryset["form_customer_phone"]}\n'
-                          f'Сообщение: {queryset["form_customer_message"]}',
-                          'nepich@gmail.com',
-                          [recipient['managers_email']],
-                          fail_silently=False)
+                send_to = recipient['managers_email']
+                send_email.delay(send_to, name, phone, message)
+            serializer.save()
         except Exception as e:
             logger.warning(e)
 
