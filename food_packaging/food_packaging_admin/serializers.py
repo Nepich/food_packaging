@@ -39,4 +39,5 @@ class LandingModelAdminSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LandingModel
-        exclude = ('id',)
+        exclude = ('id', 'top_picture', )
+

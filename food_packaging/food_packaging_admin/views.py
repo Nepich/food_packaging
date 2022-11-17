@@ -16,7 +16,6 @@ logger = logging.getLogger('main')
 
 class LandingPageFormView(CreateAPIView):
     """View to send a form"""
-    serializer_class = FormBlockSerializer
     queryset = FormBlockAdminModel.objects.all()
 
     def perform_create(self, serializer):
@@ -40,7 +39,7 @@ class LandingPageView(APIView):
     def get(self, request, *args, **kwargs):
         try:
             queryset = LandingModel.objects.latest('id')
-            serializer = LandingModelAdminSerializer(queryset)
+            serializer = LandingModelAdminSerializer(queryset, context={'request': request})
             return Response(serializer.data)
         except Exception as e:
             logger.warning(e)

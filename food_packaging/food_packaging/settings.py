@@ -35,6 +35,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['185.125.90.41', ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -131,7 +132,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
@@ -183,7 +184,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8000',
 ]
 
-REDIS_HOST = 'localhost'
+REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
