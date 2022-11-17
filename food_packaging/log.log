@@ -1,1 +1,18 @@
 
+WARNING - 2022-11-17 13:13:06,813 - views - views.py - 'LandingModel' object has no attribute 'image'
+WARNING - 2022-11-17 13:13:37,785 - views - views.py - 'LandingModel' object has no attribute 'image'
+WARNING - 2022-11-17 13:16:28,488 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:16:30,284 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:16:47,558 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:17:04,703 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:17:05,789 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:17:06,869 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:17:46,866 - views - views.py - The field ' top_picture' was included on serializer LandingModelAdminSerializer in the 'exclude' option, but does not match any model field.
+WARNING - 2022-11-17 13:18:15,167 - views - views.py - 'NoneType' object has no attribute 'build_absolute_uri'
+WARNING - 2022-11-17 13:18:28,903 - views - views.py - 'NoneType' object has no attribute 'build_absolute_uri'
+WARNING - 2022-11-17 13:20:01,198 - views - views.py - 'str' object has no attribute 'build_absolute_uri'
+WARNING - 2022-11-17 13:20:17,548 - views - views.py - 'ImageFieldFile' object has no attribute 'build_absolute_uri'
+WARNING - 2022-11-17 13:20:41,595 - views - views.py - 'ImageFieldFile' object has no attribute 'build_absolute_uri'
+WARNING - 2022-11-17 13:31:53,948 - views - views.py - 'LandingModel' object is not iterable
+WARNING - 2022-11-17 13:33:40,246 - views - views.py - 'EmployeeAdminModel' object has no attribute 'image'
+WARNING - 2022-11-17 13:34:37,268 - views - views.py - 'EmployeeAdminModel' object has no attribute 'image'

@@ -54,7 +54,14 @@ class LandingModelAdmin(admin.ModelAdmin):
         }),
         ('Блок "Продукты"', {
             'fields': ('products_header',
-                       'products_description',)
+                       'products_description',
+                       'products_first_card_utp',
+                       'products_first_card_desc',
+                       'products_second_card_utp',
+                       'products_second_card_desc',
+                       'products_third_card_utp',
+                       'products_third_card_desc',
+                       )
         }),
         ('Блок "Преимущества"', {
             'fields': ('benefits_header',
@@ -72,8 +79,8 @@ class LandingModelAdmin(admin.ModelAdmin):
         ('Блок "Наша команда"', {
             'fields': ('team_header',)
         }),
-        ('Блок "Заявки"', {
-            'fields': ('footer_address', 'footer_email', 'fax_footer')
+        ('Блок "Футер"', {
+            'fields': ('footer_address', 'footer_email', 'fax_footer', 'form_personal_data')
         })
     )
     inlines = [EmployeeInstanceInline, GalleryImageInstanceInline, ProductInstanceInline]
